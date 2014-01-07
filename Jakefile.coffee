@@ -16,6 +16,7 @@ FORCED_DEPENDENCIES =
   'states': ['ember-runtime']
   'data': ['ember-states']
   'runtime': ['rsvp']
+  'metal': ['loader']
 
 
 npmVersion = (version) ->
@@ -123,6 +124,8 @@ task 'dist', ['vendor:update', 'vendor:dist'], ->
       outputBody.push sourceBody
 
     outputBody = outputBody.join "\n"
+
+    outputBody = outputBody.replace /var define, requireModule;/ , '' if moduleName.match /loader/ 
 
     # write out generated file
     outputPath = PATH.resolve __dirname, "#{moduleName}.js"
