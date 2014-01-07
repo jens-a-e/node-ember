@@ -39,6 +39,7 @@ task 'dist', ['vendor:update', 'vendor:dist'], ->
   moduleRoot  = PATH.resolve VENDOR_EMBER, 'dist', 'modules'
   moduleNames = FS.readdirSync(moduleRoot).map (filename) ->
     return null if filename == 'handlebars.js' # uses external version
+    return null if filename.match /tests\.js$/
     PATH.basename filename, '.js'
   moduleNames.push 'ember-data' # manually add this.
 
