@@ -124,8 +124,8 @@ task 'dist', ['vendor:update', 'vendor:dist'], ->
       outputBody.push sourceBody
 
     outputBody = outputBody.join "\n"
-
-    outputBody = outputBody.replace /var define, requireModule;/ , '' if moduleName.match /loader/ 
+    if moduleName.match /loader/ 
+      outputBody = outputBody.replace /var define, requireModule, require, requirejs;/ , ''
 
     # write out generated file
     outputPath = PATH.resolve __dirname, "#{moduleName}.js"

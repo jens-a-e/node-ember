@@ -5,7 +5,7 @@
 
 
 (function() {
-var define, requireModule, require, requirejs;
+
 
 (function() {
   var registry = {}, seen = {};
